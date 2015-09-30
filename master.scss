@@ -19,6 +19,11 @@ $topbar-title-weight: bold;
 $topbar-link-font-size: rem-calc(16);
 $topbar-link-font-family: $header-font-family;
 
+$sub-nav-font-family: $header-font-family;
+$sub-nav-font-color: #444;
+
+$magellan-bg: #eee;
+
 @import "foundation";
 
 $caption-font: 'PT Sans Caption', 'PT Sans', sans-serif;
@@ -153,4 +158,10 @@ a:hover {
 // fix the definition lists
 dd {
     padding-left: 2em;
+}
+
+.magellan-container {
+  .sub-nav li {
+    list-style: none;
+  }
 }
