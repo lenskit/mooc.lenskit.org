@@ -1,0 +1,22 @@
+gems:
+  - jekyll-redirect-from
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - config.rb
+  - bower.json
+
+defaults:
+  - scope:
+      path: "documentation"
+      type: pages
+    values:
+      layout: doc-page
+      priority: 0.8
+
+markdown: kramdown
+
+kramdown:
+  input: kramdown
+  hard_wrap: false
