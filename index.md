@@ -1,5 +1,6 @@
 ---
 title: LensKit for Teaching
+layout: default
 ---
 
 # LensKit for Teaching

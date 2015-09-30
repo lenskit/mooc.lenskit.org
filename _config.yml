@@ -9,6 +9,11 @@ exclude:
 
 defaults:
   - scope:
+      path: "/"
+      type: pages
+    values:
+      layouts: default
+  - scope:
       path: "documentation"
       type: pages
     values:
@@ -20,3 +25,6 @@ markdown: kramdown
 kramdown:
   input: kramdown
   hard_wrap: false
+
+sass:
+  sass_dir: bower_components/foundation/scss
