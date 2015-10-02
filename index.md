@@ -9,5 +9,6 @@ This page documents using LensKit in a classroom environment.
 
 - [Setting up the environment](setup.html)
 - [Javadoc for LensKit 3.0-T1](apidocs/)
+- [LensKit tutorial video](http://1drv.ms/1GpcO64)
 
 Michael finds the [Javadoc Search Frame](https://greasyfork.org/en/scripts/3758-javadoc-search-frame) user script to be super-useful for working with Javadoc.
