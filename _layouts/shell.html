@@ -36,6 +36,9 @@
 {% for script in page.scripts %}
 <script type="text/javascript" src="{{script}}"></script>
 {% endfor %}
-<script type="text/javascript">$(document).foundation()</script>
+<script type="text/javascript">
+hljs.initHighlightingOnLoad();
+$(document).foundation();
+</script>
 </body>
 </html>
