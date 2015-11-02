@@ -2,11 +2,6 @@
 title: Evaluator
 ---
 
-- [Home](/)
-- [Documentation](/documentation/)
-- {:.current} [Evaluator](/evaluator)
-{:.breadcrumbs}
-
 # Using the LensKit Evaluator
 
 LensKit provides a flexible framework for conducting offline evaluations of
