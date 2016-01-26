@@ -29,7 +29,9 @@ On Windows, the installers for Java and IntelliJ are mostly adequate.  The full 
 
 2.  Create an environment variable so other programs can find Java.  To do this, go to the Start menu and search for ‘environment’; one of the options is ‘Set up environment variables for your account’.  Choose this, then Add a new environment variable.  The variable's name will be `JAVA_HOME`, and its value will be the path to your JDK installation. This is typically something like `C:\Program Files\Java\jdk1.8.0_60`.  You will need to update the value of this variable every time you update your Java installation.
 
-3.  Install IntelliJ IDEA using its [Windows installer](https://www.jetbrains.com/idea/download/).
+3.  Create a `HOME` environment variable.  This should point to your user's base directory, e.g. `C:\Users\michael`.  You can just set this to the value `%USERPROFILE%` and it will automatically pick it up from the Windows equivalent to `HOME`.  Having an explicit `HOME` variable makes some software happier.
+
+4.  Install IntelliJ IDEA using its [Windows installer](https://www.jetbrains.com/idea/download/).
 
 Then you should be ready to go!
 
@@ -38,13 +40,11 @@ Then you should be ready to go!
 
 Mac setup is pretty much the same, with the added wrinkle of installing a separate Java for IntelliJ to use.
 
-1.  Install [Java 6 for Mac](https://support.apple.com/kb/DL1572). This is the Java that will run IntelliJ.
+1.  Install the JDK using the latest installer from <http://java.oracle.com>.  You need to download a JDK installer for J2SE; a JRE installer is not sufficient.  This is the Java that you will use to run LensKit.
 
-2.  Install the JDK using the latest installer from <http://java.oracle.com>.  You need to download a JDK installer for J2SE; a JRE installer is not sufficient.  This is the Java that you will use to run LensKit.
+2.  [Download IntelliJ IDEA](https://www.jetbrains.com/idea/download/) and drag the application to your Applications folder.
 
-3.  [Download IntelliJ IDEA](https://www.jetbrains.com/idea/download/) and drag the application to your Applications folder.
-
-4.  Set up your Java environment in IntelliJ:
+3.  Set up your Java environment in IntelliJ:
 
     1.  Launch IntelliJ
     2.  In the startup screen, pick 'Configure' -> 'Project Defaults' -> 'Project Structure'
