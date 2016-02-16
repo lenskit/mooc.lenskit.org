@@ -10,7 +10,7 @@ This page documents using LensKit in a classroom environment.
 - [Setting up the environment](setup.html)
 - [Assignment Tips](tips.html)
 - [Documentation](documentation/)
-- [Javadoc for LensKit 3.0-T1](apidocs/)
+- [Javadoc for LensKit 3.0-T3](apidocs/)
 - [LensKit tutorial video](http://1drv.ms/1GpcO64)
 - [Code from tutorial](https://bitbucket.org/recsys-mooc/lenskit-hello)
 
