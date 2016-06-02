@@ -46,6 +46,19 @@ automatically configures the evaluation to run on the train-test pairs produced 
 task, and enrolls the crossfold task as a dependency for the train-test task so that Gradle will
 make sure to run them in the correct order.
 
+You can also specify manually-created train-test splits, using any of the [input data formats](../data/#input-data):
+
+~~~groovy
+dataSet {
+    trainSource textFile {
+        // ...
+    }
+    testSource textFile {
+        // ...
+    }
+}
+~~~
+
 ## Output Files
 
 The output files are specified by the following options:
