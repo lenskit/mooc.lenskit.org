@@ -1,0 +1,358 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>Getting Started · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="basics/" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="getting-started.html">
+            
+                <a href="getting-started.html">
+            
+                    
+                    Getting Started
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="basics/">
+            
+                <a href="basics/">
+            
+                    
+                    Fundamental Concepts
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="basics/structure.html">
+            
+                <a href="basics/structure.html">
+            
+                    
+                    Structure of a Recommender
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="basics/configuration.html">
+            
+                <a href="basics/configuration.html">
+            
+                    
+                    Configuring a Recommender
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="basics/data-model.html">
+            
+                <a href="basics/data-model.html">
+            
+                    
+                    The LensKit Data Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="basics/data-access.html">
+            
+                <a href="basics/data-access.html">
+            
+                    
+                    Connecting to Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="basics/libraries.html">
+            
+                <a href="basics/libraries.html">
+            
+                    
+                    Libraries
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Getting Started</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="getting-started-with-lenskit">Getting Started with LensKit</h1><p>This chapter describes how to embed LensKit in an application.</p><p>The <a href="http://github.com/lenskit/lenskit-hello" target="_blank">lenskit-hello</a> project provides a working example of configuring, building, and using a recommender.  This document is based on that code.</p><h2 id="getting-lenskit">Getting LensKit</h2><p>We recommend getting LensKit from the Maven central repositories.   To use it from a Gradle project,
+add the following to your <code>build.gradle</code>:</p><pre><code class="lang-groovy">repositories {
+    mavenCentral()
+}
+dependencies {
+    compile <span class="hljs-string">&apos;org.grouplens.lenskit:lenskit-all:3.0-M1&apos;</span>
+}</code></pre>
+<p>Or in Maven:</p><pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.grouplens.lenskit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lenskit-all<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0-M1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<p><code>lenskit-all</code> will pull in all of LensKit except the command line interface.  You can instead depend on the particular pieces of LensKit that you need, if you want.  But <code>lenskit-all</code> is a good way to get started.</p><p>You can also retrieve LensKit from Maven using SBT, Ivy, or any other Maven-compatible dependency resolver.  If you don&apos;t want to let your build system manage your dependencies, download the <a href="http://lenskit.org/download.html" target="_blank">binary distribution</a> and put the JARs in your project&apos;s library directory.</p><h2 id="config">Configuring the Recommender</h2><p>In order to use LensKit, you first need to configure the LensKit algorithm you want to use.  This consists primarily of selecting the <a href="GLOSSARY.html#component" class="glossary-term" title="A single object, defined by a class typically implementing some interface that defines the component&apos;s behavior, that forms a portion of a recommender algorithm.">component</a> implementations you want and configuring them with a <a href="http://lenskit.org/apidocs/org/grouplens/lenskit/core/LenskitConfiguration.html" target="_blank">LenskitConfiguration</a>.  For example, to configure a basic item-item kNN recommender with baseline, use the following configuration (save it in a file, such as <code>item-item.groovy</code>)</p><pre><code class="lang-groovy"><span class="hljs-comment">// Use item-item CF to score items</span>
+bind ItemScorer to ItemItemScorer
+<span class="hljs-comment">// let&apos;s use personalized mean rating as the baseline/fallback predictor.</span>
+<span class="hljs-comment">// 2-step process:</span>
+<span class="hljs-comment">// First, use the user mean rating as the baseline scorer</span>
+bind (BaselineScorer, ItemScorer) to UserMeanItemScorer
+<span class="hljs-comment">// Second, use the item mean rating as the base for user means</span>
+bind (UserMeanBaseline, ItemScorer) to ItemMeanRatingItemScorer
+<span class="hljs-comment">// and normalize ratings by baseline prior to computing similarities</span>
+bind (UserVectorNormalizer) to BaselineSubtractingUserVectorNormalizer</code></pre>
+<p>You can then load that configuration in your Java program:</p><pre><code class="lang-java">LenskitConfiguration config = ConfigHelpers.load(<span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;item-item.groovy&quot;</span>))</code></pre>
+<h2 id="connecting-the-data-source">Connecting the Data Source</h2><p>LensKit also requires a data source.  We can use one of the <a href="http://grouplens.org/datasets/movielens/" target="_blank">MovieLens data  sets</a>.  Download the Latest-Small (or Latest) file from there.  You will also need a <em>data manifest</em> to tell LensKit how to use it; download <a href="movielens.yml">this one</a> and save it in the MovieLens data directory (alongside the <code>.csv</code> files).</p><p>You can then load the data source:</p><pre><code class="lang-java">StaticDataSource source = StaticDataSource.load(<span class="hljs-string">&quot;ml-latest-small/movielens.yml&quot;</span>);</code></pre>
+<h2 id="creating-the-recommender">Creating the Recommender</h2><p>You then need to create a recommender to actually be able to recommend:</p><pre><code class="lang-java">LenskitRecommender rec = LenskitRecommender.build(config, source);</code></pre>
+<p>When you&apos;re finished with a <code>LenskitRecommender</code>, close it with <code>rec.close()</code>.  <code>try</code>-with-resources blocks work great for this:</p><pre><code class="lang-java"><span class="hljs-keyword">try</span> (LenskitRecommender rec = LenskitRecommender.build(config)) {
+    <span class="hljs-comment">/* do things */</span>
+}</code></pre>
+<h2 id="generating-recommendations">Generating Recommendations</h2><p>The recommender object provides access to components like <code>ItemRecommender</code> that can do the actual recommendation.  For example, to generate 10 recommendations for user 42:</p><pre><code class="lang-java">ItemRecommender irec = rec.getItemRecommender();
+ResultList recommendations = irec.recommend(<span class="hljs-number">42</span>, <span class="hljs-number">10</span>);</code></pre>
+<p>Since we did not configure an <code>ItemRecommender</code> when configuring LensKit, it uses the default: the <code>TopNItemRecommender</code>, which scores items using the configured <code>ItemScorer</code> and returns the <em>N</em> highest-scored items.  Since we are using item-item CF, these scores are the raw predicted ratings from item-item collaborative filtering.</p><p>You can also also predict ratings with the <code>RatingPredictor</code>:</p><pre><code class="lang-java">RatingPredictor pred = rec.getRatingPredictor();
+Result score = pred.predict(<span class="hljs-number">42</span>, <span class="hljs-number">17</span>);</code></pre>
+<h2 id="next-steps">Next Steps</h2><p>This is just the beginning! There&apos;s a lot more to explore in LensKit, including <a href="configuration.md">how to configure different recommenders</a>, <a href="data-access.md">connecting to data sources</a>, and <a href="../evaluator/quickstart.md">evaluating recommenders</a>.</p>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="basics/" class="navigation navigation-next " aria-label="Next page: Fundamental Concepts">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Getting Started","level":"1.2","depth":1,"next":{"title":"Fundamental Concepts","level":"1.3","depth":1,"path":"basics/index.md","ref":"basics/index.md","articles":[{"title":"Structure of a Recommender","level":"1.3.1","depth":2,"path":"basics/structure.md","ref":"basics/structure.md","articles":[]},{"title":"Configuring a Recommender","level":"1.3.2","depth":2,"path":"basics/configuration.md","ref":"basics/configuration.md","articles":[]},{"title":"The LensKit Data Model","level":"1.3.3","depth":2,"path":"basics/data-model.md","ref":"basics/data-model.md","articles":[]},{"title":"Connecting to Data","level":"1.3.4","depth":2,"path":"basics/data-access.md","ref":"basics/data-access.md","articles":[]},{"title":"Libraries","level":"1.3.5","depth":2,"path":"basics/libraries.md","ref":"basics/libraries.md","articles":[]}]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"lenskitVersion":"3.0-M1","plugins":[],"root":"_doc_source","styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"ignoreSpecialCharacters":false,"maxIndexSize":1000000},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"fontsettings":{"family":"sans","size":2,"theme":"white"},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started.md","mtime":"2016-07-23T01:07:08.826Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-07-23T19:37:27.913Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

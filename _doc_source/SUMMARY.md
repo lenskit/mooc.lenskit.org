@@ -1,6 +1,6 @@
 # Summary
 
-1.  [Getting Started](basics/getting-started.md)
+1.  [Getting Started](getting-started.md)
 2.  [Fundamental Concepts](basics/index.md)
     1.  [Structure of a Recommender](basics/structure.md)
     2.  [Configuring a Recommender](basics/configuration.md)
