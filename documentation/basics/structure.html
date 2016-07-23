@@ -1,0 +1,331 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>Structure of a Recommender · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="configuration.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="getting-started.md">
+            
+                <span>
+            
+                    
+                    Getting Started
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Fundamental Concepts
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.3.1" data-path="structure.html">
+            
+                <a href="structure.html">
+            
+                    
+                    Structure of a Recommender
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="configuration.html">
+            
+                <a href="configuration.html">
+            
+                    
+                    Configuring a Recommender
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="data-model.html">
+            
+                <a href="data-model.html">
+            
+                    
+                    The LensKit Data Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="data-access.html">
+            
+                <a href="data-access.html">
+            
+                    
+                    Connecting to Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Structure of a Recommender</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="structure-of-a-recommender">Structure of a Recommender</h1><p>LensKit recommenders are built out of many different <em>components</em>, each usually defined by an interface that may have many different implementations.  Selecting implementations to use is how you pick the algorithm and configuration that LensKit will use.</p><p>LensKit has many different interfaces and components, so it can seem a bit hard to know where to get started with designing or implementing a new algorithm.  Hopefully this page will clear up a lot of the confusion and help you understand how LensKit thinks about recommendation.</p><h2 id="scoring-items">Scoring Items</h2><p>The heart of most LensKit recommender algorithms is the <code>ItemScorer</code>.  If you are trying to implement a new algorithm for LensKit, and it&apos;s a traditional score-the-items, pick-the-top-<em>N</em> recommender, you probably want to implement an <code>ItemScorer</code>.</p><p><a href="../apidocs/org/lenskit/api/ItemScorer.html">ItemScorer</a>s provide user-personalized scores for items.  These scores could be anything; they could be predicted ratings, purchase probabilities, TF-IDF cosine similarity between the item and the user&apos;s profile, or whatever method the underlying algorithm uses to score algorithms.  The only restriction on the output of an <a href="../GLOSSARY.html#item-scorer" class="glossary-term" title="An `ItemScorer` computes user-personalized scores for items.  It is at the heart of most LensKit recommender algorithms.">item scorer</a> is that higher scores should be &#x2018;better&#x2019; in whatever sense the scorer measures.</p><h2 id="predicting-ratings">Predicting Ratings</h2><p>If you want to present rating predictions to users, you want use a <a href="../apidocs/org/lenskit/api/RatingPredictor.html">RatingPredictor</a>.  Rating predictors are like scorers (in fact, the API is entirely parallel), but their output is predicted ratings in whatever rating scale you use.  With the <code>ItemScorer</code> and <code>RatingPredictor</code> interfaces, LensKit breaks the rating prediction task into two pieces.  The <code>ItemScorer</code> is responsible for computing some kind of score, and the <code>RatingPredictor</code> maps those scores onto the rating range.</p><p>Often, the <a href="../GLOSSARY.html#item-scorer" class="glossary-term" title="An `ItemScorer` computes user-personalized scores for items.  It is at the heart of most LensKit recommender algorithms.">item scorer</a>&apos;s output will be (roughly) predicted ratings, and the rating predictor won&apos;t have much work to do.  The default rating predictor, <a href="../apidocs/org/lenskit/basic/SimpleRatingPredictor.html">SimpleRatingPredictor</a>, just takes the output of an <a href="../GLOSSARY.html#item-scorer" class="glossary-term" title="An `ItemScorer` computes user-personalized scores for items.  It is at the heart of most LensKit recommender algorithms.">item scorer</a> and clamps it to the rating range (as specified by the <a href="../apidocs/org/lenskit/data/pref/PreferenceDomain.html">PreferenceDomain</a>).  This means that algorithms such as <a href="http://dx.doi.org/10.1145/2043932.2043956" target="_blank">OrdRec</a> can be implemented as rating predictors, converting scores from any <a href="../GLOSSARY.html#item-scorer" class="glossary-term" title="An `ItemScorer` computes user-personalized scores for items.  It is at the heart of most LensKit recommender algorithms.">item scorer</a> on whatever scale that scorer provides on into discrete rating predictions (and in fact, this is exactly how we plan to implement it when we get to it).</p><p>If you are implementing a new rating prediction strategy, you still probably want to implement an <a href="../GLOSSARY.html#item-scorer" class="glossary-term" title="An `ItemScorer` computes user-personalized scores for items.  It is at the heart of most LensKit recommender algorithms.">item scorer</a> rather than a rating predictor, particularly if your innovation is in how to compute the predictions or scores themselves.  Only implement a rating predictor if your innovation is in mapping scores to user-visible ratings, or if for some other reason building an <a href="../GLOSSARY.html#item-scorer" class="glossary-term" title="An `ItemScorer` computes user-personalized scores for items.  It is at the heart of most LensKit recommender algorithms.">item scorer</a> doesn&apos;t make sense.</p><p>If you have a rating predictor and want to use it as an <a href="../GLOSSARY.html#item-scorer" class="glossary-term" title="An `ItemScorer` computes user-personalized scores for items.  It is at the heart of most LensKit recommender algorithms.">item scorer</a>, the <a href="../apidocs/org/lenskit/basic/RatingPredictorItemScorer.html">RatingPredictorItemScorer</a> is a bridge implementation that uses predicted ratings as scores.</p><h2 id="top-n-recommendation">Top-<em>N</em> Recommendation</h2><p>The <a href="../apidocs/org/lenskit/api/ItemRecommender.html">ItemRecommender</a> interface provides Top-<em>N</em> recommendation.  Given a user ID, it produces lists of recommended items.</p><p>The default implementation, <a href="../apidocs/org/lenskit/basic/TopNItemRecommender.html">TopNItemRecommender</a>, just returns the top <em>N</em> items as scored by an <code>ItemScorer</code>.  So if you want to build a new Top-N recommender, but your innovation is in the item scoring, you still want to implement an <code>ItemScorer</code>.  However, if you want to experiment with different ways of generating recommendation lists, such as topic diversification, then you probably want to create an <code>ItemRecommender</code>.</p><p>While the item recommender returns a list, and most implementations order the list in some kind of decreasing order of quality/recommendedness, it is appropriate to implement e.g. a set recommender whose results do not have any intrinsic order as an <code>ItemRecommender</code>.  The application you embed it in could take advantage of this, so long as it knows the configured algorithm doesn&apos;t return some order that really needs to be maintained for the recommendations to make sense.</p><h2 id="item-based-scoring-and-recommendation">Item-Based Scoring and Recommendation</h2><p>In addition to the user-personalized scores and recommendations provided by <code>ItemScorer</code> and <code>ItemRecommender</code>, LensKit provides &#x2018;item-based&#x2019; scorers and recommendations that operate with a (possibly empty) set of <em>reference items</em>.  These are useful for providing recommendations targeted to a shopping basket and related-product listings.</p><p>The interfaces are:</p><ul><li><a href="../apidocs/org/lenskit/api/ItemBasedItemScorer.html">ItemBasedItemScorer</a> computes basket-relative item scores.
+</li>
+<li>[ItemBasedItemRecommender][] computes basket-relative recommendations.
+</li></ul>
+<h2 id="wiring-up-recommenders">Wiring Up Recommenders</h2><p>LensKit uses <em><a href="../GLOSSARY.html#dependency-injection" class="glossary-term" title="A design pattern in which classes do not directly instantiate their dependencies; rather, they require their dependencies to be injected into them via a constructor parameter or setter.  For example, a component using direct instantiation would construct its dependency as follows:">dependency injection</a></em> to configure its algorithms.  This allows algorithms to be very modular and flexible, but means there are quite a few moving parts.  Most implementations of the interfaces described in this page depend on additional components defined by further interfaces.  These interface implementations can also be selected; this is how you can configure the item-item collaborative filter to operate with different notions of item similarity, for example.</p><p>When you read the JavaDoc for a LensKit <a href="../GLOSSARY.html#component" class="glossary-term" title="A single object, defined by a class typically implementing some interface that defines the component&apos;s behavior, that forms a portion of a recommender algorithm.">component</a>, such as <a href="../apidocs/org/lenskit/knn/item/ItemItemScorer.html">ItemItemScorer</a>, you will often see a constructor with the <code>@Inject</code> annotation.  This constructor is used by LensKit to instantiate the <a href="../GLOSSARY.html#component" class="glossary-term" title="A single object, defined by a class typically implementing some interface that defines the component&apos;s behavior, that forms a portion of a recommender algorithm.">component</a>, and its parameters are <em>dependencies</em>.  These dependencies can often be configured, and implementations of them may have additional dependencies of their own.</p><p>Some components, such as <a href="../apidocs/org/lenskit/knn/item/model/ItemItemModel.html">ItemItemModel</a>, have a <code>@DefaultProvider</code> annotation.  This instructs LensKit that instances of the <a href="../GLOSSARY.html#component" class="glossary-term" title="A single object, defined by a class typically implementing some interface that defines the component&apos;s behavior, that forms a portion of a recommender algorithm.">component</a> can be obtained by first instantiating the specified provider class, then calling its <code>get()</code> method to obtain the actual <a href="../GLOSSARY.html#component" class="glossary-term" title="A single object, defined by a class typically implementing some interface that defines the component&apos;s behavior, that forms a portion of a recommender algorithm.">component</a> instance.</p><h2 id="internal-components">Internal Components</h2><p>Most LensKit algorithms define additional components that control various aspects of their internal behavior.  These can be discovered by exploring the JavaDoc.</p><p>One common form of internal <a href="../GLOSSARY.html#component" class="glossary-term" title="A single object, defined by a class typically implementing some interface that defines the component&apos;s behavior, that forms a portion of a recommender algorithm.">component</a> is a <em>model</em>.  Many recommenders operate on some kind of precomputed data structure, such as a matrix decomposition or a statistical model, in order to produce scores and recommendations.  These models can be shared between multiple instances of the recommender itself; they can also be serialized and stored on disk.</p><p>The most common structure for a LensKit recommender has at least the following three components:</p><ul><li>The <em><a href="../GLOSSARY.html#item-scorer" class="glossary-term" title="An `ItemScorer` computes user-personalized scores for items.  It is at the heart of most LensKit recommender algorithms.">item scorer</a></em> that defines the actual scoring logic defined by the recommender.
+</li>
+<li>The <em>model</em> that contains the precomputed model data.
+</li>
+<li>The <em>model provider</em> that builds the model class. This is usually implemented as a separate <code>Provider</code> class.
+</li></ul>
+<h2 id="putting-it-all-together">Putting It All Together</h2><p>In most algorithms, the components work together like this (an arrow A &#x2192; B means A uses B):</p><p><img alt="Core recommender components" src="scorer-arch.svg"></p><p>Both the rating predictor and the item recommender use the <a href="../GLOSSARY.html#item-scorer" class="glossary-term" title="An `ItemScorer` computes user-personalized scores for items.  It is at the heart of most LensKit recommender algorithms.">item scorer</a> to generate scores, which they use to produce their respective outputs.  If you want to change the algorithm, you change the <a href="../GLOSSARY.html#item-scorer" class="glossary-term" title="An `ItemScorer` computes user-personalized scores for items.  It is at the heart of most LensKit recommender algorithms.">item scorer</a>.</p><p>The configuration in the <a href="../getting-started.md#config">Getting Started chapter</a> tells LensKit to do the following:</p><ul><li>Use <code>ItemItemScorer</code>, the item-item collaborative filter, to compute item scores by making it the primary implementation of <code>ItemScorer</code>
+</li>
+<li>Use the <code>UserMeanItemScorer</code> to compute baseline scores
+</li>
+<li>Use the <code>ItemMeanRatingItemScorer</code> as the baseline for the user mean scorer, so that the resulting scores are personalized means
+</li>
+<li>Normalize user rating vectors by subtracting the baseline score (personalized mean).
+</li></ul>
+<p>You can use different item scorers for prediction and recommendation, using <a href="../configuration">context-sensitive configuration</a>.</p><p>Also, while the default rating predictor and item recommender use an <a href="../GLOSSARY.html#item-scorer" class="glossary-term" title="An `ItemScorer` computes user-personalized scores for items.  It is at the heart of most LensKit recommender algorithms.">item scorer</a>, you can implement item recommenders and rating predictors that do not use an <a href="../GLOSSARY.html#item-scorer" class="glossary-term" title="An `ItemScorer` computes user-personalized scores for items.  It is at the heart of most LensKit recommender algorithms.">item scorer</a> if you wish.</p>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Fundamental Concepts">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="configuration.html" class="navigation navigation-next " aria-label="Next page: Configuring a Recommender">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Structure of a Recommender","level":"1.3.1","depth":2,"next":{"title":"Configuring a Recommender","level":"1.3.2","depth":2,"path":"basics/configuration.md","ref":"basics/configuration.md","articles":[]},"previous":{"title":"Fundamental Concepts","level":"1.3","depth":1,"path":"basics/index.md","ref":"basics/index.md","articles":[{"title":"Structure of a Recommender","level":"1.3.1","depth":2,"path":"basics/structure.md","ref":"basics/structure.md","articles":[]},{"title":"Configuring a Recommender","level":"1.3.2","depth":2,"path":"basics/configuration.md","ref":"basics/configuration.md","articles":[]},{"title":"The LensKit Data Model","level":"1.3.3","depth":2,"path":"basics/data-model.md","ref":"basics/data-model.md","articles":[]},{"title":"Connecting to Data","level":"1.3.4","depth":2,"path":"basics/data-access.md","ref":"basics/data-access.md","articles":[]}]},"dir":"ltr"},"config":{"lenskitVersion":"3.0-M1","plugins":[],"root":"_doc_source","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"basics/structure.md","mtime":"2016-07-23T01:23:35.292Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-07-23T01:24:05.253Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
