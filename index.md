@@ -9,11 +9,9 @@ This page documents using LensKit in a classroom environment.
 
 - [Setting up the environment](setup.html)
 - [Assignment Tips](tips.html)
-- [Documentation](documentation/)
-- [Javadoc for LensKit 3.0-T3](apidocs/)
-- [Example LensKit Recommender](https://github.com/lenskit/eval-quickstart/tree/lk3/src/main/java/org/lenskit/demo/eval)
+- [LensKit Documentation](documentation/)
+- [Javadoc for LensKit 3.0-M1](apidocs/)
+- [Example LensKit Recommender](https://github.com/lenskit/eval-quickstart/tree/master/src/main/java/org/lenskit/demo/eval)
 - [Java SDK Documentation](http://docs.oracle.com/javase/8/docs/api/)
-- [LensKit tutorial video](http://1drv.ms/1GpcO64)
-- [Code from tutorial](https://bitbucket.org/recsys-mooc/lenskit-hello)
 
 Michael finds the [Javadoc Search Frame](https://greasyfork.org/en/scripts/3758-javadoc-search-frame) user script to be super-useful for working with Javadoc.
