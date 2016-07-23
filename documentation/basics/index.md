@@ -6,10 +6,8 @@ redirect_from:
 
 # LensKit Basics
 
-These documents describe some of the core pieces of LensKit that will be used
-by any code that works with LensKit.
+This chapter describes several of the foundational concepts of LensKit:
 
--   [Getting Started](getting-started/) — how to start using LensKit in a program.
--   [Structure of a Recommender](structure/)
--   [Configuring a Recommender](configuration/)
--   [Data Access](data-access/) — how to connect LensKit to data sources.
+- Recommender components
+- Recommender configuration
+- The data model and data access layer

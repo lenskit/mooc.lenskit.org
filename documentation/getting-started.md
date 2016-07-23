@@ -4,7 +4,7 @@ title: Getting Started
 
 # Getting Started with LensKit
 
-This page describes how to embed LensKit in an application.
+This chapter describes how to embed LensKit in an application.
 
 [lenskit-hello]: http://github.com/lenskit/lenskit-hello
 
@@ -20,7 +20,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    compile 'org.grouplens.lenskit:lenskit-all:3.0-T1'
+    compile 'org.grouplens.lenskit:lenskit-all:3.0-M1'
 }
 ~~~
 
@@ -30,15 +30,15 @@ Or in Maven:
 <dependency>
   <groupId>org.grouplens.lenskit</groupId>
   <artifactId>lenskit-all</artifactId>
-  <version>{{site.data.lenskit.version}}</version>
+  <version>3.0-M1</version>
 </dependency>
 ~~~
 
 `lenskit-all` will pull in all of LensKit except the command line interface.  You can instead depend on the particular pieces of LensKit that you need, if you want.  But `lenskit-all` is a good way to get started.
 
-You can also retrieve LensKit from Maven using Gradle, SBT, Ivy, or any other Maven-compatible dependency resolver.  If you don't want to let your build system manage your dependencies, download the [binary distribution](http://lenskit.org/download.html) and put the JARs in your project's library directory.
+You can also retrieve LensKit from Maven using SBT, Ivy, or any other Maven-compatible dependency resolver.  If you don't want to let your build system manage your dependencies, download the [binary distribution](http://lenskit.org/download.html) and put the JARs in your project's library directory.
 
-## Configuring the Recommender
+## Configuring the Recommender {#config}
 
 [LenskitConfiguration]: http://lenskit.org/apidocs/org/grouplens/lenskit/core/LenskitConfiguration.html
 
@@ -65,10 +65,12 @@ LenskitConfiguration config = ConfigHelpers.load(new File("item-item.groovy"))
 
 ## Connecting the Data Source
 
-LensKit also requires a data source.  We can add use one of the files from [MovieLens Latest](http://grouplens.org/datasets/movielens/):
+LensKit also requires a data source.  We can use one of the [MovieLens data  sets](http://grouplens.org/datasets/movielens/).  Download the Latest-Small (or Latest) file from there.  You will also need a *data manifest* to tell LensKit how to use it; download [this one](movielens.yml) and save it in the MovieLens data directory (alongside the `.csv` files).
 
-~~~groovy
-bind EventDAO to TextEventDAO.create(new File("ratings.csv"), Formats.movieLensLatest());
+You can then load the data source:
+
+~~~java
+StaticDataSource source = StaticDataSource.load("ml-latest-small/movielens.yml");
 ~~~
 
 ## Creating the Recommender
@@ -76,10 +78,16 @@ bind EventDAO to TextEventDAO.create(new File("ratings.csv"), Formats.movieLensL
 You then need to create a recommender to actually be able to recommend:
 
 ~~~java
-LenskitRecommender rec = LenskitRecommender.build(config);
+LenskitRecommender rec = LenskitRecommender.build(config, source);
 ~~~
 
-When you're finished with a `LenskitRecommender`, close it with `rec.close()`.
+When you're finished with a `LenskitRecommender`, close it with `rec.close()`.  `try`-with-resources blocks work great for this:
+
+~~~java
+try (LenskitRecommender rec = LenskitRecommender.build(config)) {
+    /* do things */
+}
+~~~
 
 ## Generating Recommendations
 
@@ -87,7 +95,7 @@ The recommender object provides access to components like `ItemRecommender` that
 
 ~~~java
 ItemRecommender irec = rec.getItemRecommender();
-List<ScoredId> recommendations = irec.recommend(42, 10);
+ResultList recommendations = irec.recommend(42, 10);
 ~~~
 
 Since we did not configure an `ItemRecommender` when configuring LensKit, it uses the default: the `TopNItemRecommender`, which scores items using the configured `ItemScorer` and returns the *N* highest-scored items.  Since we are using item-item CF, these scores are the raw predicted ratings from item-item collaborative filtering.
@@ -96,12 +104,9 @@ You can also also predict ratings with the `RatingPredictor`:
 
 ~~~java
 RatingPredictor pred = rec.getRatingPredictor();
-double score = pred.predict(42, 17);
+Result score = pred.predict(42, 17);
 ~~~
 
-## More Reading
+## Next Steps
 
-- [Configuring LensKit](../configuration/)
-- [How LensKit recommenders are structured](../structure/)
-- [Connecting to data sources](../data-access/)
-- [How to run an algorithm experiment](../../evaluator/quickstart/)
+This is just the beginning! There's a lot more to explore in LensKit, including [how to configure different recommenders](configuration.md), [connecting to data sources](data-access.md), and [evaluating recommenders](../evaluator/quickstart.md).
