@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Connecting to Data · GitBook</title>
+        <title>Libraries · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="libraries.html" />
     
-    
-    <link rel="prev" href="data-model.html" />
+    <link rel="prev" href="data-access.html" />
     
 
     </head>
@@ -168,7 +166,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3.4" data-path="data-access.html">
+        <li class="chapter " data-level="1.3.4" data-path="data-access.html">
             
                 <a href="data-access.html">
             
@@ -181,7 +179,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5" data-path="libraries.html">
+        <li class="chapter active" data-level="1.3.5" data-path="libraries.html">
             
                 <a href="libraries.html">
             
@@ -229,7 +227,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Connecting to Data</a>
+        <a href=".." >Libraries</a>
     </h1>
 </div>
 
@@ -244,19 +242,13 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="connecting-to-data">Connecting to Data</h1><p>As described in <a href="data-model.html">The LensKit Data Model</a>, LensKit abstracts data access using data access objects (DAOs).  We&apos;ve seen how to use the DAO to access entities; this page explains how to create and configure a DAO.</p><p>Currently, LensKit provides DAOs that support in-memory storage and reading from static files (e.g. CSV files).  The DAO interface can be reimplemented on top of SQL, Hibernate, MongoDB, or whatever your infrastructure requires.</p><p>LensKit&apos;s data access is all read-only.  LensKit does not provide any facilities for modifying the underlying data; if you need to modify data while LensKit is running, just write the new data directly to the database and provide a LensKit DAO that reads this data.  Prebuilt model components will be out of date with respect to the new data, but many components will take into account the latest data when producing recommendations.</p><h2 id="the-static-file-data-source">The Static File Data Source</h2><p>The <a href="../apidocs/org/lenskit/data/dao/file/StaticDataSource.html">StaticDataSource</a> class compiles a DAO from entities stored in static data files, such as CSV files, and collections in memory.  It can additionally derive entities from mentions in other entity lists, such as synthesizing a set of items from the item IDs in ratings.</p><p>Static data sources are described by <em>data manifests</em>, YAML files that describe the collection of files comprising the data source.  For example, to read the <code>ratings.csv</code> and <code>movies.csv</code> files from one of the recent <a href="http://grouplens.org/datasets/movielens" target="_blank">MovieLens data sets</a>, you could use the following:</p><pre><code class="lang-yaml"><span class="hljs-attr">ratings:</span>
-<span class="hljs-attr">  file:</span> ratings.csv
-<span class="hljs-attr">  format:</span> csv
-<span class="hljs-attr">  header:</span> <span class="hljs-literal">true</span>
-<span class="hljs-attr">  entity_type:</span> rating
-<span class="hljs-attr">items:</span>
-<span class="hljs-attr">  file:</span> movies.csv
-<span class="hljs-attr">  format:</span> csv
-<span class="hljs-attr">  header:</span> <span class="hljs-literal">true</span>
-<span class="hljs-attr">  entity_type:</span> item
-<span class="hljs-attr">  columns:</span> [id, name]</code></pre>
-<p>This describes a data source that reads ratings from <code>ratings.csv</code>, using the default column layout for ratings (<code>user,item,rating,timestamp</code>), and movie IDs and titles (<code>name</code>s) from <code>movies.csv</code>.</p><p>Once you have such a data source, you can load it:</p><pre><code class="lang-java">StaticDataSource movielens = StaticDataSource.load(Paths.get(<span class="hljs-string">&quot;ml-latest/movielens.yml&quot;</span>));</code></pre>
-<p><code>StaticDataSource</code> is a <code>Provider</code> of data access objects; call its <code>get()</code> method to get a <a href="../GLOSSARY.html#data-access-object" class="glossary-term" title="A class that provides access to data.">data access object</a> suitable for use in a recommmender.</p>
+                                <h1 id="libraries-in-use">Libraries in Use</h1><p>LensKit makes use of several libraries throughout its design.  While primary public recommender APIs do not mandate use of these libraries, you will encounter them when you write your own recommender components and algorithms.</p><h2 id="fastutil">Fastutil</h2><p>We use the <a href="http://fastutil.di.unimi.it/" target="_blank">fastutil</a> library for optimized primitive collections, such as lists of <code>long</code>s or <code>double</code>s and maps of the same.  One of the most common types is <code>Long2DoubleMap</code>, which we use to represent sparse vectors mapping user or item IDs to values.</p><p>The LensKit utility class <a href="../apidocs/org/lenskit/util/math/Vectors.html">Vectors</a> provides utilities for performing vector computations on vectors represented by <code>Long2DoubleMap</code>, such as dot products and Euclidean norms.</p><p>We also provide highly memory-efficient, immutable implementations of <code>LongSortedSet</code> and <code>Long2DoubleSortedMap</code> accessible through the <a href="../apidocs/org/lenskit/util/collections/LongUtils.html">LongUtils</a> utility class (see the <code>frozenSet</code> and <code>frozenMap</code> methods).  These implementations use sorted arrays to provide $O(lg n)$ lookup and <code>Vectors</code> methods take advantage of their layout to provide linear-time pairwise operations such as dot products.  They also do not have excess overhead due to unused space, unlike the hashtable implementations of maps and sets. Further, when none of the <code>long</code> values exceed the storage space of an <code>int</code>, these implementations will use <code>int</code> arrays instead of <code>long</code> arrays to further reduce memory consumption.</p><p>It is a common pattern to use a <code>Long2DoubleOpenHashMap</code> to accumulate results and then convert them to an optimized map using <code>LongUtils.frozenMap</code> for longer-term storage.</p><h2 id="guava">Guava</h2><p>We use <a href="https://github.com/google/guava/wiki" target="_blank">Google Guava</a> library extensively in LensKit.  A number of LensKit classes make use of its <code>Predicate</code> and <code>Function</code> interfaces, and we use its collection and I/O utilities quite a bit.</p><h2 id="grapht">Grapht</h2><p>We use the <a href="http://grapht.grouplens.org/" target="_blank">Grapht</a> <a href="../GLOSSARY.html#dependency-injection" class="glossary-term" title="A design pattern in which classes do not directly instantiate their dependencies; rather, they require their dependencies to be injected into them via a constructor parameter or setter.  For example, a component using direct instantiation would construct its dependency as follows:">dependency injection</a> container to configure and instantiate LensKit recommender components.  If you have used <a href="https://github.com/google/guice" target="_blank">Google Guice</a>, many aspects of Grapht should be familiar.</p><h2 id="commons-math-3">Commons Math 3</h2><p>We use <a href="https://commons.apache.org/proper/commons-math/" target="_blank">Apache Commons Math</a> for linear algebra, including dense vectors and matrices.</p><h2 id="other-libraries">Other Libraries</h2><p>There are several other libraries we use in LensKit, including:</p><ul><li>Commons Lang
+</li>
+<li>SLF4J
+</li>
+<li>Joda-Convert
+</li></ul>
+
                                 
                                 </section>
                             
@@ -283,14 +275,10 @@
 
             
                 
-                <a href="data-model.html" class="navigation navigation-prev " aria-label="Previous page: The LensKit Data Model">
+                <a href="data-access.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Connecting to Data">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="libraries.html" class="navigation navigation-next " aria-label="Next page: Libraries">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -299,7 +287,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Connecting to Data","level":"1.3.4","depth":2,"next":{"title":"Libraries","level":"1.3.5","depth":2,"path":"basics/libraries.md","ref":"basics/libraries.md","articles":[]},"previous":{"title":"The LensKit Data Model","level":"1.3.3","depth":2,"path":"basics/data-model.md","ref":"basics/data-model.md","articles":[]},"dir":"ltr"},"config":{"lenskitVersion":"3.0-M1","plugins":[],"root":"_doc_source","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"basics/data-access.md","mtime":"2016-07-23T01:23:18.589Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-07-23T17:14:54.157Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Libraries","level":"1.3.5","depth":2,"previous":{"title":"Connecting to Data","level":"1.3.4","depth":2,"path":"basics/data-access.md","ref":"basics/data-access.md","articles":[]},"dir":"ltr"},"config":{"lenskitVersion":"3.0-M1","plugins":[],"root":"_doc_source","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"basics/libraries.md","mtime":"2016-07-23T17:13:02.192Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-07-23T17:14:54.157Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
