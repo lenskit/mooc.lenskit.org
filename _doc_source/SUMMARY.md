@@ -6,6 +6,7 @@
     2.  [Configuring a Recommender](basics/configuration.md)
     3.  [The LensKit Data Model](basics/data-model.md)
     4.  [Connecting to Data](basics/data-access.md)
+    5.  [Libraries](basics/libraries.md)
 
 {% if false %}
 3.  [Evaluating Recommenders](evaluator/index.md)
