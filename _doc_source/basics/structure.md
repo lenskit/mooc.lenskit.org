@@ -2,7 +2,7 @@
 title: Recommender Structure
 ---
 
-# Structure of a LensKit Recommender
+# Structure of a Recommender
 
 LensKit recommenders are built out of many different *components*, each usually defined by an interface that may have many different implementations.  Selecting implementations to use is how you pick the algorithm and configuration that LensKit will use.
 
@@ -50,8 +50,8 @@ In addition to the user-personalized scores and recommendations provided by `Ite
 
 The interfaces are:
 
-- [`ItemBasedItemScorer`][ItemBasedItemScorer] computes basket-relative item scores.
-- [`ItemBasedItemRecommender`][ItemBasedItemRecommender] computes basket-relative recommendations.
+- [ItemBasedItemScorer][] computes basket-relative item scores.
+- [ItemBasedItemRecommender][] computes basket-relative recommendations.
 
 [ItemBasedItemScorer]: /apidocs/org/lenskit/api/ItemBasedItemScorer.html
 [ItemBasedItemScorer]: /apidocs/org/lenskit/api/ItemBasedItemScorer.html
@@ -60,9 +60,9 @@ The interfaces are:
 
 LensKit uses *dependency injection* to configure its algorithms.  This allows algorithms to be very modular and flexible, but means there are quite a few moving parts.  Most implementations of the interfaces described in this page depend on additional components defined by further interfaces.  These interface implementations can also be selected; this is how you can configure the item-item collaborative filter to operate with different notions of item similarity, for example.
 
-When you read the JavaDoc for a LensKit component, such as [`ItemItemScorer`](/apidocs/org/lenskit/knn/item/ItemItemScorer.html), you will often see a constructor with the `@Inject` annotation.  This constructor is used by LensKit to instantiate the component, and its parameters are *dependencies*.  These dependencies can often be configured, and implementations of them may have additional dependencies of their own.
+When you read the JavaDoc for a LensKit component, such as [ItemItemScorer](/apidocs/org/lenskit/knn/item/ItemItemScorer.html), you will often see a constructor with the `@Inject` annotation.  This constructor is used by LensKit to instantiate the component, and its parameters are *dependencies*.  These dependencies can often be configured, and implementations of them may have additional dependencies of their own.
 
-Some components, such as [`ItemItemModel`](/apidocs/org/lenskit/knn/item/model/ItemItemModel.html), have a `@DefaultProvider` annotation.  This instructs LensKit that instances of the component can be obtained by first instantiating the specified provider class, then calling its `get()` method to obtain the actual component instance.
+Some components, such as [ItemItemModel](/apidocs/org/lenskit/knn/item/model/ItemItemModel.html), have a `@DefaultProvider` annotation.  This instructs LensKit that instances of the component can be obtained by first instantiating the specified provider class, then calling its `get()` method to obtain the actual component instance.
 
 ## Internal Components
 

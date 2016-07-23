@@ -9,15 +9,15 @@ LensKit has a flexible data model that allows many different kinds of data to be
 [CommonAttributes]: /apidocs/org/lenskit/data/entities/CommonAttributes.html
 [TypedName]: /apidocs/org/lenskit/data/entities/TypedName.html
 
-The heart of the LensKit data model is an *entity*, defined by the [`Entity`][Entity] interface.  An entity is a particular piece of data, consisting of a *type* (the name of the type of data), an *id* (of type `long`), and zero or more named *attributes*.
+The heart of the LensKit data model is an *entity*, defined by the [Entity][] interface.  An entity is a particular piece of data, consisting of a *type* (the name of the type of data), an *id* (of type `long`), and zero or more named *attributes*.
 
-Common entity types, whose type names are defined in [`CommonTypes`], include:
+Common entity types, whose type names are defined in [CommonTypes][], include:
 
 - `user`, a user in the system
 - `item`, an item in the system
 - `rating`, a user-provided rating of an item
 
-Attributes are identified by name, such as `user`; to improve reliability, `Entity` provides a type-safe interface, using [typed names][TypedNames] that associate a type (such as `Long`) with a name.  [`CommonAttributes`][CommonAttributes] provides constants defining typed names for many common attributes:
+Attributes are identified by name, such as `user`; to improve reliability, `Entity` provides a type-safe interface, using [typed names][TypedName] that associate a type (such as `Long`) with a name.  [CommonAttributes][] provides constants defining typed names for many common attributes:
 
 - `ENTITY_ID`, the entity's ID.
 - `USER_ID`, a field (named `user`) storing a user ID associated with an entity.  This is *not* the user ID on a `user` entity; that is defined by the `ENTITY_ID` attribute of that entity.  Rather, it is used for attributes on *other* entities that reference users.  For example, `rating` entities have a `USER_ID` attribute that stores the ID of the user who provided the rating.
@@ -30,10 +30,10 @@ Attributes are identified by name, such as `user`; to improve reliability, `Enti
 [DataAccessObject]: /apidocs/org/lenskit/data/dao/DataAccessObject.html
 [query]: /apidocs/org/lenskit/data/dao/DataAccessObject.html#query-org.lenskit.data.entities.EntityType-
 
-Data access in LensKit revolves around the [*data access object*][DataAccessObject] interface.  This interface provides query access to a database of entities.  It has two primary operations:
+Data access in LensKit revolves around the data access object interface, [DataAccessObject][].  This interface provides query access to a database of entities.  It has two primary operations:
 
 - Get the IDs of all entities of a particular type, with `getEntityIds`
-- Query the database for entities of a particular type, possibly matching other conditions, with [`query`][query]
+- Query the database for entities of a particular type, possibly matching other conditions, with [query][query]
 
 The `query` method exposes a fluent interface for writing and using database queries.  For example, the following query:
 
@@ -60,7 +60,7 @@ The `Entity` interface is very general, but is not terribly convenient for commo
 
 [Rating]: /apidocs/org/lenskit/data/ratings/Rating.html
 
-One such class is  [`Rating`][Rating].  It exposes the common attributes of a rating entity: user and item IDs, rating value, and timestamp.
+One such class is  [Rating][].  It exposes the common attributes of a rating entity: user and item IDs, rating value, and timestamp.
 
 To use a view class, pass it to the `asType` query method:
 

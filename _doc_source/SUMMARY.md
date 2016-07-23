@@ -4,7 +4,7 @@
 2.  [Fundamental Concepts](basics/index.md)
     1.  [Structure of a Recommender](basics/structure.md)
     2.  [Configuring a Recommender](basics/configuration.md)
-    3.  [The LensKit Data Model](basis/data-model.md)
+    3.  [The LensKit Data Model](basics/data-model.md)
     4.  [Connecting to Data](basics/data-access.md)
 
 {% if false %}

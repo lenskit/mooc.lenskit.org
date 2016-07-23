@@ -2,7 +2,7 @@
 title: Data Access
 ---
 
-# Data Access in LensKit
+# Connecting to Data
 
 As described in [The LensKit Data Model](data-model.md), LensKit abstracts data access using data access objects (DAOs).  We've seen how to use the DAO to access entities; this page explains how to create and configure a DAO.
 
@@ -14,7 +14,7 @@ LensKit's data access is all read-only.  LensKit does not provide any facilities
 
 [StaticDataSource]: /apidocs/org/lenskit/data/dao/file/StaticDataSource.html
 
-The [`StaticDataSource`][StaticDataSource] class compiles a DAO from entities stored in static data files, such as CSV files, and collections in memory.  It can additionally derive entities from mentions in other entity lists, such as synthesizing a set of items from the item IDs in ratings.
+The [StaticDataSource][] class compiles a DAO from entities stored in static data files, such as CSV files, and collections in memory.  It can additionally derive entities from mentions in other entity lists, such as synthesizing a set of items from the item IDs in ratings.
 
 Static data sources are described by *data manifests*, YAML files that describe the collection of files comprising the data source.  For example, to read the `ratings.csv` and `movies.csv` files from one of the recent [MovieLens data sets](http://grouplens.org/datasets/movielens), you could use the following:
 

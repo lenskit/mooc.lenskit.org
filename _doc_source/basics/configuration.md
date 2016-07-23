@@ -4,7 +4,7 @@ redirect_from:
   - /lenskit-groovy/index.html
 ---
 
-# Configuring a LensKit Recommender
+# Configuring a Recommender
 
 [LenskitConfiguration]: /apidocs/org/lenskit/LenskitConfiguration.html
 
