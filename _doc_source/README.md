@@ -11,8 +11,8 @@ priority: 1
 
 If you're just getting started with LensKit, start with the following:
 
-- [Getting Started](basics/getting-started.md), to use LensKit in a project
-- [Experiment Quickstart](evaluator/quickstart.md), to run recommender experiments with LensKit
+- [Getting Started](getting-started.md) to use LensKit in a project
+- [Experiment Quickstart](evaluator/quickstart.md) to run recommender experiments with LensKit
 
 Then you will probably want to read the rest of our documentation:
 
