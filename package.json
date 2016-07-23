@@ -1,0 +1,23 @@
+{
+  "name": "mooc.lenskit.org",
+  "version": "1.0.0",
+  "description": "LensKit for Teaching Web Site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lenskit/mooc.lenskit.org.git"
+  },
+  "author": "Michael Ekstrand <md@ekstrandom.net> (https://md.ekstrandom.net/)",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/lenskit/mooc.lenskit.org/issues"
+  },
+  "homepage": "https://github.com/lenskit/mooc.lenskit.org#readme",
+  "devDependencies": {
+    "gitbook": "~3.2.0",
+    "gulp": "^3.9.1"
+  }
+}
