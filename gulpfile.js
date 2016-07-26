@@ -8,5 +8,5 @@ gulp.task('manual', function(callback) {
     return callback(new Error("cannot find gitbook 'build' command"))
   }
   return command.exec([__dirname, 'documentation'],
-                      {log: 'info', format: 'website'})
+                      {log: 'info', format: 'website'});
 });

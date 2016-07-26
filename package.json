@@ -19,5 +19,8 @@
   "devDependencies": {
     "gitbook": "~3.2.0",
     "gulp": "^3.9.1"
+  },
+  "jshintConfig": {
+    "esversion": 6
   }
 }
