@@ -1,0 +1,14 @@
+image: node:5.10
+
+before_script:
+- npm install -g gulp-cli
+- npm install
+
+pages:
+  script:
+  - gulp build-site --dest-dir public
+  artifacts:
+    paths:
+    - public
+  only:
+  - master

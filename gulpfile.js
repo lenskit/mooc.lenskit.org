@@ -2,10 +2,11 @@
 const path = require('path');
 const gulp = require('gulp');
 const g = {
+  util: require('gulp-util'),
   changed: require('gulp-changed')
 };
 
-const outputDir = '_site';
+const outputDir = g.util.env['dest-dir'] || '_site';
 
 gulp.task('manual', function(callback) {
   const gitbook = require('gitbook');
