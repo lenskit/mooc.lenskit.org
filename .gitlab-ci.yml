@@ -6,7 +6,7 @@ before_script:
 
 pages:
   script:
-  - gulp build-site --dest-dir public
+  - gulp build --dest-dir public
   artifacts:
     paths:
     - public
