@@ -28,3 +28,26 @@ gulp.task('pages', function() {
   const pages = require('./lib/pages');
   return pages.render('content', outputDir, 'layouts')
 });
+
+gulp.task('styles', function() {
+  const gulpSass = require('gulp-sass');
+  return gulp.src('styles/*.scss')
+      .pipe(gulpSass())
+      .pipe(gulp.dest(path.join(outputDir, 's')))
+})
+
+gulp.task('build', ['manual', 'copy-docs', 'pages', 'styles'])
+
+gulp.task('default', ['build'])
+
+gulp.task('watch', ['build'], function() {
+  gulp.watch('styles/*.scss', ['styles']);
+  gulp.watch('static/**', ['copy-docs']);
+  gulp.watch(['content/**', 'layouts/*'], ['pages']);
+  gulp.watch(['manual/**'], ['manual']);
+});
+
+gulp.task('serve', function() {
+  var testServer = require('./lib/test-server');
+  testServer(outputDir);
+});

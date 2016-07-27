@@ -1,0 +1,162 @@
+@import 'tango';
+
+$body-font: 'Tinos', 'Liberation Serif', Georgia, serif;
+$header-font: 'PT Sans', sans-serif;
+$caption-font: 'PT Sans Caption', 'PT Sans', sans-serif;
+$code-font: Inconsolata, Consolas, Courier, monospace;
+
+$text-color: #000;
+
+$light-color: $aluminium4;
+
+$link-color: $blue-med;
+$link-visited-color: $plum-med;
+$link-active-color: $orange-med;
+$link-hover-color: $butter-med;
+
+// base font settings
+html,
+button,
+input,
+select,
+textarea,
+.pure-g [class *= "pure-u"] {
+  color: $text-color;
+  font-family: $body-font;
+  font-feature-settings: 'ccmp', 'liga';
+  font-size: 14pt;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+}
+
+// headings
+h1,
+h2,
+h3,
+h4 {
+  font-family: $header-font;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0;
+
+  & + p {
+    margin-top: 0;
+  }
+}
+
+h3 {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: normal;
+  margin-bottom: 0;
+
+  & + p {
+    margin-top: 0;
+  }
+}
+
+// lists
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 0;
+  padding-left: 2em;
+}
+
+ul,
+ol {
+  padding-left: 2em;
+}
+
+// links
+a:link {
+  color: $link-color;
+  text-decoration: none;
+}
+
+a:visited {
+  color: $link-visited-color;
+  text-decoration: none;
+}
+
+a:active {
+  color: $link-active-color;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-style: dashed;
+}
+
+// code
+pre,
+code {
+  font-family: $code-font;
+}
+
+code {
+  background: $aluminium1;
+  padding: 1pt 2.5pt;
+}
+
+pre {
+  background: $aluminium1;
+
+  font-size: .85em;
+
+  margin-bottom: 1em;
+  padding: 1ex;
+}
+
+// text block features
+aside {
+    font: {
+        style: italic;
+        size: 1rem;
+    }
+    margin-bottom: 1ex;
+    padding: {
+        left: 2rem;
+        right: 2rem;
+    }
+}
+
+.alert-box {
+  border: {
+    style: none none none solid;
+    width: 6px;
+  }
+
+  &.warning, &.info, &.error {
+    background: #F7F7F7 none repeat scroll 0% 0%;
+    color: #333;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// citations
+.citation {
+    padding: {
+        left: 2rem;
+        right: 2rem;
+    }
+    margin-bottom: 1ex;
+
+    .pub-venue {
+        font-style: italic;
+    }
+}

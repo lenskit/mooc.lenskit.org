@@ -1,10 +1,10 @@
 ---
-title: LensKit for Teaching
+title: Welcome
 ---
 
-# LensKit for Teaching
+# LensKit for Learning
 
-This page documents using LensKit in a classroom environment.
+This site collects documentation for using LensKit with the *Recommender Systems* specialization on Coursera.
 
 - [Setting up the environment](setup.html)
 - [Assignment Tips](tips.html)

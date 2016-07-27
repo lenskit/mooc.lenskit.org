@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Learning with LensKit &mdash; {{page.title}}
+  LensKit for Learning &mdash; {{page.title}}
 </title>
 <link rel="icon" type="image/png" href="//lenskit.org/s/lenskit-mini.png">
-<link rel="stylesheet" href="/master.css">
+<link rel="stylesheet" href="/s/master.css">
 <script type="text/javascript">
   WebFontConfig = {
     google: { families: [
@@ -29,22 +29,16 @@
 </head>
 <body>
 <div class="fixed">
-  <nav class="top-bar" data-topbar role="navigation">
-    <ul class="title-area">
-      <li class="name">
-      <h1><a href="/">LensKit for Learning</a></h1>
-      </li>
-    </ul>
-    <section class="top-bar-section" id="site-menu">
-      <ul class="right">
-        <li><a href="/documentation/" data-match="re:^/(documentation|releases)/">Documentation</a></li>
-        <li><a href="//lenskit.org/">LensKit</a>
-      </ul>
-    </section>
+  <nav class="pure-menu nav-menu pure-menu-horizontal" role="navigation">
+    <a class="pure-menu-heading pure-menu-link" href="/">LensKit for Learning</a>
+    <ul class="pure-menu-list">
+      <li class="pure-menu-item"><a class="pure-menu-link" href="/documentation/" data-match="re:^/(documentation|releases)/">Documentation</a></li>
+      <li class="pure-menu-item"><a class="pure-menu-link" href="//lenskit.org/">LensKit</a>
+    </ul>    </section>
   </nav>
 </div>
 <article class="main {{bodyWidth}} columns">
-  {{content}}
+  {{{contents}}}
 </article>
 <footer>
   Copyright © 2015 Michael D. Ekstrand.<br>

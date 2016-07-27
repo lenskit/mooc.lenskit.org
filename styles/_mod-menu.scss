@@ -1,0 +1,52 @@
+$menu-bg: $aluminium6;
+$menu-hover-bg: $aluminium5;
+$menu-text-color: $aluminium1;
+$menu-active-color: $orange-light;
+
+.nav-menu {
+  background-color: $menu-bg;
+
+  font-family: $header-font;
+  font-size: 0.85rem;
+
+  .pure-menu-heading {
+    font-family: $caption-font;
+    font-weight: bold;
+    text-transform: none;
+  }
+
+  .pure-menu-link {
+    &:link,
+    &:visited {
+      color: $menu-text-color;
+    }
+
+    &:active {
+      color: $menu-active-color;
+      background-color: $menu-hover-bg;
+    }
+
+    &:hover {
+      background-color: $menu-hover-bg;
+      color: $menu-text-color;
+    }
+  }
+
+  .pure-menu-item.active {
+    background-color: $plum-dark;
+  }
+
+  &.pure-menu-horizontal ul {
+    position: absolute;
+    right: 0;
+  }
+
+  li {
+    a {
+      @extend .pure-menu-link;
+    }
+    .dropdown {
+      display: none;
+    }
+  }
+}

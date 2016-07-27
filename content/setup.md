@@ -10,17 +10,7 @@ In order to work with LensKit and complete the assignments, you need a few thing
 - A Java development environment; we recommend [IntelliJ IDEA](https://www.jetbrains.com/idea/), and the free Community Edition is sufficient to do most things with LensKit.
 - For the later assignments: some means of analyzing data (in CSV format) and producing charts.  Excel or LibreOffice Calc will suffice; R and Python are options as well.  We provide examples in R.
 
-<div class="magellan-container" data-magellan-expedition="fixed">
-<ul class="sub-nav">
-<li data-magellan-arrival="windows"><a href="#windows">Windows</a></li>
-<li data-magellan-arrival="osx"><a href="#osx">OS X</a></li>
-<li data-magellan-arrival="linux"><a href="#linux">Linux</a></li>
-<li data-magellan-arrival="testing"><a href="#testing">Testing</a></li>
-</ul>
-</div>
-
 ## Windows Setup
-{:#windows data-magellan-destination="windows"}
 
 On Windows, the installers for Java and IntelliJ are mostly adequate.  The full procedure is the following:
 
@@ -35,7 +25,6 @@ On Windows, the installers for Java and IntelliJ are mostly adequate.  The full 
 Then you should be ready to go!
 
 ## Mac OS X Setup
-{:#osx data-magellan-destination="osx"}
 
 Mac setup is pretty much the same, with the added wrinkle of installing a separate Java for IntelliJ to use.
 
@@ -52,7 +41,6 @@ Mac setup is pretty much the same, with the added wrinkle of installing a separa
     5.  Browse to your Java 8 (under `/Library/Java/JavaVirtualMachines`), and choose the `Contents/Home` directory under the JDK version you will be using.
 
 ## Linux Setup
-{:#linux data-magellan-destination="linux"}
 
 We recommend installing the Java Development Kit from your distribution repositories.  Install version 8 if it is available; otherwise, version 7 is enough to run LensKit.
 
@@ -75,7 +63,6 @@ We recommend installing the Java Development Kit from your distribution reposito
 2.  Download and run the [IntelliJ IDEA installer](https://www.jetbrains.com/idea/download/).
 
 ## Testing the Environment
-{:#testing data-magellan-destination="testing"}
 
 To make sure that your environment is ready to use, try to load the LensKit Hello project.
 
