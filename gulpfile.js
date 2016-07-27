@@ -1,4 +1,5 @@
 "use strict";
+const path = require('path');
 const gulp = require('gulp');
 const g = {
   changed: require('gulp-changed')
@@ -12,7 +13,7 @@ gulp.task('manual', function(callback) {
   if (command === undefined) {
     return callback(new Error("cannot find gitbook 'build' command"))
   }
-  return command.exec([__dirname, 'documentation'],
+  return command.exec(['manual', path.join(outputDir, 'documentation')],
                       {log: 'info', format: 'website'});
 });
 
