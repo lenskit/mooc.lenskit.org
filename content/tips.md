@@ -1,6 +1,5 @@
 ---
 title: Assignment Tips
-layout: default
 ---
 
 # Assignment Tips

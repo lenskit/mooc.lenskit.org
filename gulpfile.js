@@ -22,3 +22,8 @@ gulp.task('copy-docs', function() {
              .pipe(g.changed(outputDir))
              .pipe(gulp.dest(outputDir));
 })
+
+gulp.task('pages', function() {
+  const pages = require('./lib/pages');
+  return pages.render('content', outputDir, 'layouts')
+});
