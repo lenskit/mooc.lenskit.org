@@ -18,6 +18,27 @@ gulp.task('manual', function(callback) {
                       {log: 'info', format: 'website'});
 });
 
+gulp.task('manual:epub', function(callback) {
+  const gitbook = require('gitbook');
+  let command = gitbook.commands.find((cmd) => cmd.name.match(/^epub /));
+  if (command === undefined) {
+    return callback(new Error("cannot find gitbook 'epub' command"));
+  }
+  return command.exec(['manual'],
+                      {log: 'info'});
+});
+
+gulp.task('manual:pdf', function(callback) {
+  const gitbook = require('gitbook');
+  let command = gitbook.commands.find((cmd) => cmd.name.match(/^pdf /));
+  if (command === undefined) {
+    return callback(new Error("cannot find gitbook 'pdf' command"));
+  }
+  return command.exec(['manual'],
+                      {log: 'info'});
+});
+
+
 gulp.task('copy-docs', function() {
   return gulp.src('static/**', {buffer: false})
              .pipe(g.changed(outputDir))
