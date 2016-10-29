@@ -1,4 +1,4 @@
-image: node:5.10
+image: node:boron
 
 before_script:
 - npm install -g gulp-cli
