@@ -42,9 +42,26 @@
 </article>
 <footer>
   Copyright © 2015–2016 Michael D. Ekstrand.<br>
-  Problems? Suggestions? This site is <a href="https://gitlab.com/lenskit/mooc.lenskit.org">public on GitLab</a>.
+  Problems? Suggestions? This site is <a href="https://github.com/lenskit/mooc.lenskit.org">public on Github</a>.
   Hosted on <a href="https://pages.gitlab.io/">GitLab Pages</a>.
 </footer>
 <script src="/s/lenskit.js"></script>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  // tracker methods like "setCustomDimension" should be called before "trackPageView"
+  _paq.push(["disableCookies"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://stats.ekstrandom.net/piwik/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '3']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="https://stats.ekstrandom.net/piwik/piwik.php?idsite=3&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
 </body>
 </html>
