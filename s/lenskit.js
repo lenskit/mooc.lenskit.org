@@ -1,6 +1,3 @@
-$(document).foundation();
-hljs.initHighlighting();
-
 function navMatches(elt) {
   var path = window.location.pathname;
   var url = $('a', elt).attr('href');
