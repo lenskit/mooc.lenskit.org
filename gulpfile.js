@@ -2,20 +2,12 @@
 const path = require('path');
 const fs = require('fs');
 const gulp = require('gulp');
+const $ = require('gulp-load-plugins')();
 const g = {
-  util: require('gulp-util'),
-  changed: require('gulp-changed')
+  util: require('gulp-util')
 };
 
 const outputDir = g.util.env['dest-dir'] || '_site';
-
-gulp.task('import', function() {
-  const addFooter = require('./_lib/addfooter');
-  let footer = fs.readFileSync('piwik.html', 'utf8');
-  return gulp.src('incoming/**')
-      .pipe(addFooter(footer))
-      .pipe(gulp.dest('.'));
-});
 
 gulp.task('manual', function(callback) {
   const gitbook = require('gitbook');
@@ -50,12 +42,12 @@ gulp.task('manual:pdf', function(callback) {
 
 gulp.task('copy-docs', function() {
   const addFooter = require('./lib/addfooter');
-  const buffer = require('gulp-buffer');
-  let footer = fs.readFileSync('piwik.html', 'utf8');
   return gulp.src('static/**', {buffer: false})
-             .pipe(g.changed(outputDir))
-             .pipe(buffer())
-             .pipe(addFooter(footer))
+             .pipe($.changed(outputDir))
+             .pipe($.buffer())
+             .pipe($.if('*.html', $.posthtml([
+               addFooter('piwik.html')
+             ])))
              .pipe(gulp.dest(outputDir));
 });
 
