@@ -1,0 +1,27 @@
+ratings:
+  file: ml-20m/ratings.csv
+  format: csv
+  header: true
+  entity_type: rating
+movies:
+  type: textfile
+  file: ml-20m/movies.csv
+  format: csv
+  entity_type: item
+  header: true
+  columns: [id, name]
+tags:
+  type: textfile
+  file: ml-20m/tags.csv
+  format: csv
+  entity_type: item-tag
+  header: true
+  columns:
+  - name: item
+    type: long
+  - name: user
+    type: long
+  - name: tag
+    type: string
+  - name: timestamp
+    type: long

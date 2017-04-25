@@ -1,0 +1,30 @@
+ratings:
+  file: ml-10M100K/ratings.dat
+  format: delimited
+  delimiter: "::"
+  header: false
+  entity_type: rating
+movies:
+  type: textfile
+  file: ml-10M100K/movies.dat
+  format: delimited
+  delimiter: "::"
+  entity_type: item
+  header: false
+  columns: [id, name]
+tags:
+  type: textfile
+  file: ml-10M100K/tags.dat
+  format: delimited
+  delimiter: "::"
+  entity_type: item-tag
+  header: false
+  columns:
+  - name: item
+    type: long
+  - name: user
+    type: long
+  - name: tag
+    type: string
+  - name: timestamp
+    type: long
