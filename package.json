@@ -20,7 +20,7 @@
     "acme-response": "~0.0.1",
     "extend": "^3.0.0",
     "gitbook": "~3.2.0",
-    "gitbook-plugin-apidoc": "mdekstrand/gitbook-plugin-apidoc#master",
+    "gitbook-plugin-apiurl": "mdekstrand/gitbook-plugin-apidoc#master",
     "gitbook-plugin-mathjax": "^1.1.0",
     "gulp": "^3.9.1",
     "gulp-buffer": "0.0.2",
