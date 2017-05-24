@@ -106,6 +106,25 @@ meta:
     precision: 0.5
 ```
 
+[[derived]]
+=== `derived` Data Sources
+
+_Derived_ data sources extract entity IDs (but no other attributes) from other entities in the completed data source.  This can be used to do things such as extract user IDs from ratings or purchase events.
+
+Derived data sources are indicated as follows:
+
+[source,yaml]
+----
+type: derived
+source_type: purchase
+source_attribute: user
+entity_type: user
+----
+
+Some entity types include default derivations; for example, `rating` entities automatically produce user and item entities.
+
+Derived entities are only used if no other component of the data source provides an entity.  So if you have a file of users, and you also derive users, then the derived users will only be used when there is not a ‘real’ user to use.
+
 [[data-types]]
 == Attribute Data Types
 

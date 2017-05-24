@@ -41,3 +41,13 @@ StaticDataSource movielens = StaticDataSource.load(Paths.get("ml-latest/movielen
 ......
 
 `StaticDataSource` is a `Provider` of data access objects; call its `get()` method to get a data access object suitable for use in a recommmender.
+
+[[common]]
+== Common Data Set Manifests
+
+For convenience, we provdie manifests for several common data sets:
+
+- link:/reference/common-manifests/ml-100k.yml[MovieLens 100K]
+- link:/reference/common-manifests/ml-1m.yml[MovieLens 1M]
+- link:/reference/common-manifests/ml-10m.yml[MovieLens 10M100K]
+- link:/reference/common-manifests/ml-20m.yml[MovieLens 20M]
